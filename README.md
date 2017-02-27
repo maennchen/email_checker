@@ -47,7 +47,7 @@ end
 config :email_checker,
   default_dns: :system,
   also_dns: [],
-  validations: [Format, MX],
+  validations: [EmailChecker.Check.Format, EmailChecker.Check.MX],
   smtp_retries: 2,
   timeout_milliseconds: :infinity
 ```

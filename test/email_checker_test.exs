@@ -1,5 +1,6 @@
 defmodule EmailCheckerTest do
   use EmailChecker.SMTPCase, async: false
+  doctest EmailChecker
 
   setup do
    EmailChecker.TestEnv.setup_default_application_env
@@ -26,7 +27,7 @@ defmodule EmailCheckerTest do
   end
 
   test "valid?: a known bad email only validated only for format as configured" do
-    Application.put_env(:email_checker, :validations, [Format])
+    Application.put_env(:email_checker, :validations, [EmailChecker.Check.Format])
     assert true == EmailChecker.valid?("derp@asdf.com")
   end
 end

@@ -4,7 +4,7 @@ defmodule EmailChecker.Mixfile do
   def project do
     [app: :email_checker,
      version: "0.0.3",
-     elixir: "~> 1.0",
+     elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -39,8 +39,10 @@ defmodule EmailChecker.Mixfile do
   defp deps do
     [{:socket, "~> 0.3.1"},
      {:mock, "~> 0.2.0", only: :test},
-     {:inch_ex, only: :docs},
-     {:excoveralls, "~> 0.6", only: :test}]
+     {:ex_doc, ">= 0.0.0", only: :dev},
+     {:inch_ex, ">= 0.0.0", only: :docs},
+     {:excoveralls, "~> 0.6", only: :test},
+     {:credo, "~> 0.5", only: [:dev, :test]}]
   end
 
   defp description do

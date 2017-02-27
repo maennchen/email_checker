@@ -7,7 +7,7 @@ defmodule EmailChecker.TestEnv do
     Application.put_env(:email_checker, :default_dns, {8, 8, 8, 8})
     Application.put_env(:email_checker, :also_dns, [{8, 8, 4, 4}])
 
-    Application.put_env(:email_checker, :validations, [Format, MX, SMTP])
+    Application.put_env(:email_checker, :validations, [EmailChecker.Check.Format, EmailChecker.Check.MX, EmailChecker.Check.SMTP])
 
     Application.put_env(:email_checker, :smtp_retries, 2)
     Application.put_env(:email_checker, :timeout_milliseconds, :infinity)
@@ -16,5 +16,7 @@ defmodule EmailChecker.TestEnv do
   end
 
 end
+
+Application.put_env(:email_checker, :validations, [EmailChecker.Check.Format])
 
 ExUnit.start()

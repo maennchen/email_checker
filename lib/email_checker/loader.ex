@@ -1,4 +1,6 @@
 defmodule EmailChecker.Loader do
+  @moduledoc false
+
   use Application
 
   defp default_dns do
@@ -22,13 +24,17 @@ defmodule EmailChecker.Loader do
     :ok = :inet_db.add_ns(ns)
   end
 
+  @spec start(Application.start_type, start_args :: term) ::
+      {:ok, pid} |
+      {:ok, pid, Application.state} |
+      {:error, reason :: term}
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
     unless default_dns() == :system, do: insert_ns(default_dns())
 
     # HACK: add a default and "also" DNS when `inet_db` is not yet available
-    # http://stackoverflow.com/questions/33811899/elixir-errors-using-inet-res-library?noredirect=1#comment55418047_33811899
+    # http://stackoverflow.com/questions/33811899/elixir-errors-using-inet-res-library#comment55418047_33811899
     if is_list(also_dns()), do: Enum.each(also_dns(), &append_ns/1)
 
     Supervisor.start_link([], strategy: :one_for_one, name: :email_checker)
