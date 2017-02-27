@@ -1,3 +1,10 @@
+## v0.1.0 (2017-02-27)
+
+* Make Checks configurable
+* Remove Elixir < 1.3 Support
+* Disable SMTP Check by default
+* Timeouts for Checks
+
 ## v0.0.3 (2015-11-22)
 
 * Fix a bug when the SMTP doesn't reply
