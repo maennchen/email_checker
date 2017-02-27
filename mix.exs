@@ -8,6 +8,7 @@ defmodule EmailChecker.Mixfile do
      elixirc_paths: elixirc_paths(Mix.env),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     test_coverage: [tool: ExCoveralls],
      description: description(),
      package: package(),
      deps: deps()]
@@ -36,10 +37,10 @@ defmodule EmailChecker.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    [
-      {:socket, "~> 0.3.1"},
-      {:mock, "~> 0.2.0", only: :test},
-    ]
+    [{:socket, "~> 0.3.1"},
+     {:mock, "~> 0.2.0", only: :test},
+     {:inch_ex, only: :docs},
+     {:excoveralls, "~> 0.6", only: :test}]
   end
 
   defp description do
