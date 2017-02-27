@@ -1,7 +1,7 @@
 defmodule EmailChecker do
 
   defp configured_validations do
-    strategies = Application.get_env(:email_checker, :validations, [Format, MX, SMTP])
+    strategies = Application.get_env(:email_checker, :validations, [Format, MX])
     for strategy <- strategies, do: &Module.concat(EmailChecker, strategy).valid?/1
   end
 

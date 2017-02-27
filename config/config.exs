@@ -35,7 +35,7 @@ use Mix.Config
 config :email_checker,
   default_dns: :system,
   also_dns: [],
-  validations: [Format, MX, SMTP],
+  validations: [Format, MX],
   smtp_retries: 2,
   timeout_milliseconds: :infinity
 

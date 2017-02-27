@@ -13,9 +13,9 @@ following order:
 * MX: validate the domain sever contains MX records
 * SMTP: validate the SMTP behind the MX records knows this email address (no
 email sent)
-
-:warning: That's rare but, some SMTP define a catchall email address. Meaning
+   * :warning: That's rare but, some SMTP define a catchall email address. Meaning
 all emails using this domain seems valid even if they are not.
+   * :warning: Most email providers nowadays don't support this method. You should only use it if you know what you're doing.
 
 ### Installation
 
@@ -47,7 +47,7 @@ end
 config :email_checker,
   default_dns: :system,
   also_dns: [],
-  validations: [Format, MX, SMTP],
+  validations: [Format, MX],
   smtp_retries: 2,
   timeout_milliseconds: :infinity
 ```
