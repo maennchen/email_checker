@@ -24,6 +24,7 @@ defmodule EmailChecker do
   """
   @spec valid?(String.t, [EmailChecker.Check]) :: boolean
   def valid?(email, validations \\ configured_validations())
+  def valid?(nil, _validations), do: false
   def valid?(email, [validation | tail]) do
     if validation.valid?(email) do
       valid?(email, tail)

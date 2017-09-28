@@ -30,4 +30,8 @@ defmodule EmailCheckerTest do
     Application.put_env(:email_checker, :validations, [EmailChecker.Check.Format])
     assert true == EmailChecker.valid?("derp@asdf.com")
   end
+
+  test "valid?: nil email" do
+    assert false == EmailChecker.valid?(nil)
+  end
 end
