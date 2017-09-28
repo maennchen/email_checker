@@ -32,6 +32,6 @@ defmodule EmailCheckerTest do
   end
 
   test "valid?: nil email" do
-    assert false == EmailChecker.valid?(nil)
+    refute EmailChecker.valid?(nil)
   end
 end
