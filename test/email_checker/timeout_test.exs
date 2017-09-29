@@ -60,16 +60,17 @@ defmodule EmailChecker.TimeoutTest do
     end
   end
 
-  test "timeout: non_neg_integer works to quickly return from checking a known bad email address or server" do
-    timeout = 5000
-    Application.put_env(:email_checker, :timeout_milliseconds, timeout)
-    Application.put_env(:email_checker, :smtp_retries, 1)
-
-    timer = start_timer(timeout)
-    _ = EmailChecker.valid? "derp@asdf.com"
-    timer_not_fired = stop_timer(timer)
-
-    assert !timer_not_fired
-  end
+  # Re-Enable if you know any bad server. asdf.com is not working anymore
+  # test "timeout: non_neg_integer works to quickly return from checking a known bad email address or server" do
+  #   timeout = 5000
+  #   Application.put_env(:email_checker, :timeout_milliseconds, timeout)
+  #   Application.put_env(:email_checker, :smtp_retries, 1)
+  #
+  #   timer = start_timer(timeout)
+  #   _ = EmailChecker.valid? "derp@asdf.com"
+  #   timer_not_fired = stop_timer(timer)
+  #
+  #   assert !timer_not_fired
+  # end
 
 end
