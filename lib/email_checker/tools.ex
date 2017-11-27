@@ -3,7 +3,7 @@ defmodule EmailChecker.Tools do
 
   @email_regex ~r/^(?<user>[^\s]+)@(?<domain>[^\s]+\.[^\s]+)$/
 
-  @spec domain_name(String.t) :: Sting.t | nil
+  @spec domain_name(String.t) :: String.t | nil
   def domain_name(email) do
     case Regex.named_captures(email_regex(), email) do
       %{"domain" => domain} ->
