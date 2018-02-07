@@ -39,11 +39,6 @@ defmodule EmailChecker.Check.SMTP do
       valid?(email, retries - 1)
   end
 
-  defp domain_name(email) do
-    email
-    |> Tools.domain_name
-  end
-
   defp mx_address(email) do
     email
     |> Tools.domain_name
@@ -67,7 +62,7 @@ defmodule EmailChecker.Check.SMTP do
       |> TCP.connect!(25, opts)
     socket |> Stream.recv!
 
-    socket |> Stream.send!("HELO #{domain_name(email)}\r\n")
+    socket |> Stream.send!("HELO #{Tools.domain_name(email)}\r\n")
     socket |> Stream.recv!
 
     socket |> Stream.send!("mail from:<fake@email.com>\r\n")
