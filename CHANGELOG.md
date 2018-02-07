@@ -1,3 +1,12 @@
+## v0.1.2 (2018-02-07)
+
+* HELO doesn't work with empty message (#10)
+* Format Code using Elixir 1.6
+
+## v0.1.1 (2017-09-29)
+
+* Check Type of email parameter in valid? function
+
 ## v0.1.0 (2017-02-27)
 
 * Make Checks configurable
