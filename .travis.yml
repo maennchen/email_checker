@@ -1,16 +1,41 @@
 language: elixir
 sudo: false
+env:
+  - MIX_ENV=test
 elixir:
-  - 1.3.3
-  - 1.4.0
+  - 1.3
+  - 1.4
+  - 1.5
+  - 1.6
 otp_release:
   - 18.2
-  - 19.2
+  - 19.3
+  - 20.0
 notifications:
   email:
     on_success: change
     on_failure: change
-after_script:
-  - MIX_ENV=docs mix deps.get
-  - MIX_ENV=docs mix inch.report
-  - MIX_ENV=test mix coveralls.travis
+matrix:
+  exclude:
+  - elixir: 1.3
+    otp_release: 20.0
+  - elixir: 1.6
+    otp_release: 18.2
+jobs:
+  include:
+    - stage: format
+      script: mix format --check-formatted
+      elixir: 1.6
+      otp_release: 20.0
+    - stage: coverage
+      env:
+        - MIX_ENV=test
+      script: mix coveralls.travis
+      elixir: 1.6
+      otp_release: 20.0
+    - stage: inch
+      env:
+        - MIX_ENV=docs
+      script: mix inch.report
+      elixir: 1.6
+      otp_release: 20.0
