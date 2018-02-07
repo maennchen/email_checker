@@ -22,8 +22,9 @@ defmodule EmailChecker do
       true
 
   """
-  @spec valid?(String.t, [EmailChecker.Check]) :: boolean
+  @spec valid?(String.t(), [EmailChecker.Check]) :: boolean
   def valid?(email, validations \\ configured_validations())
+
   def valid?(email, [validation | tail]) when is_binary(email) do
     if validation.valid?(email) do
       valid?(email, tail)
@@ -31,9 +32,13 @@ defmodule EmailChecker do
       false
     end
   end
+
   def valid?(email, []) when is_binary(email), do: true
 
   defp configured_validations do
-    Application.get_env(:email_checker, :validations, [EmailChecker.Check.Format, EmailChecker.Check.MX])
+    Application.get_env(:email_checker, :validations, [
+      EmailChecker.Check.Format,
+      EmailChecker.Check.MX
+    ])
   end
 end

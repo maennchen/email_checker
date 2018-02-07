@@ -3,5 +3,5 @@ defmodule EmailChecker.Check do
   Bahaviour for all Checks
   """
 
-  @callback valid?(String.t) :: boolean
+  @callback valid?(String.t()) :: boolean
 end

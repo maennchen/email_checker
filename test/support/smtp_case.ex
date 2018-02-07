@@ -13,15 +13,14 @@ defmodule EmailChecker.SMTPCase do
       Generate a Mock for a Valid SMTP Response
       """
       def valid_mock do
-        EmailChecker.SMTPCase.mock(fn (_) -> "250 Something" end)
+        EmailChecker.SMTPCase.mock(fn _ -> "250 Something" end)
       end
-
 
       @doc """
       Generate a Mock for an Invalid SMTP Response
       """
       def invalid_mock do
-        EmailChecker.SMTPCase.mock(fn (_) -> nil end)
+        EmailChecker.SMTPCase.mock(fn _ -> nil end)
       end
     end
   end
@@ -37,13 +36,13 @@ defmodule EmailChecker.SMTPCase do
       {
         Socket.TCP,
         [],
-        [connect!: fn (_, _, _) -> nil end]
+        [connect!: fn _, _, _ -> nil end]
       },
       {
         Socket.Stream,
         [],
         [
-          send!: fn (_, _) -> nil end,
+          send!: fn _, _ -> nil end,
           recv!: recv
         ]
       }

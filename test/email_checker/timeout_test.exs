@@ -2,7 +2,7 @@ defmodule EmailChecker.TimeoutTest do
   use EmailChecker.SMTPCase, async: false
 
   setup do
-   EmailChecker.TestEnv.setup_default_application_env
+    EmailChecker.TestEnv.setup_default_application_env()
   end
 
   # start/stop timer strategy ported from Erlang lib/kernel/src/inet.erl
@@ -15,15 +15,17 @@ defmodule EmailChecker.TimeoutTest do
   defp start_timer(timeout), do: :erlang.start_timer(timeout, self(), :tooslow)
 
   defp stop_timer(nil), do: true
+
   defp stop_timer(timer) do
     case :erlang.cancel_timer(timer) do
       false ->
         # false, if the timer was unable to be canceled
         receive do
-          {:timeout,_timer,_msg} -> false
-  	    after
+          {:timeout, _timer, _msg} -> false
+        after
           0 -> false
-  	    end
+        end
+
       _ ->
         # true, if the timer was able to be canceled
         true
@@ -37,7 +39,7 @@ defmodule EmailChecker.TimeoutTest do
       Application.put_env(:email_checker, :smtp_retries, 1)
 
       timer = start_timer(timeout)
-      result = EmailChecker.valid? "kevin@disneur.me"
+      result = EmailChecker.valid?("kevin@disneur.me")
       timer_not_fired = stop_timer(timer)
 
       assert timer_not_fired
@@ -52,7 +54,7 @@ defmodule EmailChecker.TimeoutTest do
       Application.put_env(:email_checker, :smtp_retries, 1)
 
       timer = start_timer(timeout)
-      result = EmailChecker.valid? "kevin@disneur.me"
+      result = EmailChecker.valid?("kevin@disneur.me")
       timer_not_fired = stop_timer(timer)
 
       assert timer_not_fired
@@ -72,5 +74,4 @@ defmodule EmailChecker.TimeoutTest do
   #
   #   assert !timer_not_fired
   # end
-
 end

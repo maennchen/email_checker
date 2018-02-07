@@ -12,22 +12,20 @@ defmodule EmailChecker.Loader do
   end
 
   defp insert_ns(ns = {w, x, y, z})
-    when is_integer(w) and is_integer(x) and is_integer(y) and is_integer(z)
-  do
+       when is_integer(w) and is_integer(x) and is_integer(y) and is_integer(z) do
     :ok = :inet_db.ins_ns(ns)
   end
 
   defp append_ns(ns = {w, x, y, z})
-    when is_integer(w) and is_integer(x) and is_integer(y) and is_integer(z)
-  do
+       when is_integer(w) and is_integer(x) and is_integer(y) and is_integer(z) do
     # Append the specified dns server at the end of the nameserver list
     :ok = :inet_db.add_ns(ns)
   end
 
-  @spec start(Application.start_type, start_args :: term) ::
-      {:ok, pid} |
-      {:ok, pid, Application.state} |
-      {:error, reason :: term}
+  @spec start(Application.start_type(), start_args :: term) ::
+          {:ok, pid}
+          | {:ok, pid, Application.state()}
+          | {:error, reason :: term}
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 

@@ -23,14 +23,16 @@ defmodule EmailChecker.Check.SMTP do
       false
 
   """
-  @spec valid?(String.t, non_neg_integer) :: boolean
+  @spec valid?(String.t(), non_neg_integer) :: boolean
   def valid?(email, retries \\ max_retries())
   def valid?(email, retries)
   def valid?(_, 0), do: false
+
   def valid?(email, retries) do
     case smtp_reply(email) do
       nil ->
         false
+
       response ->
         Regex.match?(~r/^250 /, response)
     end
@@ -41,14 +43,15 @@ defmodule EmailChecker.Check.SMTP do
 
   defp mx_address(email) do
     email
-    |> Tools.domain_name
-    |> Tools.lookup
+    |> Tools.domain_name()
+    |> Tools.lookup()
   end
 
   defp timeout_opt do
     case max_timeout() do
       :infinity ->
         :infinity
+
       t when is_integer(t) ->
         t |> div(max_retries()) |> abs
     end
@@ -56,20 +59,22 @@ defmodule EmailChecker.Check.SMTP do
 
   defp smtp_reply(email) do
     opts = [packet: :line, timeout: timeout_opt()]
+
     socket =
       email
       |> mx_address
       |> TCP.connect!(25, opts)
-    socket |> Stream.recv!
+
+    socket |> Stream.recv!()
 
     socket |> Stream.send!("HELO #{Tools.domain_name(email)}\r\n")
-    socket |> Stream.recv!
+    socket |> Stream.recv!()
 
     socket |> Stream.send!("mail from:<fake@email.com>\r\n")
-    socket |> Stream.recv!
+    socket |> Stream.recv!()
 
     socket |> Stream.send!("rcpt to:<#{email}>\r\n")
-    socket |> Stream.recv!
+    socket |> Stream.recv!()
   end
 
   defp max_retries, do: Application.get_env(:email_checker, :smtp_retries, 2)

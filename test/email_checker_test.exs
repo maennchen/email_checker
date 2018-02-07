@@ -3,7 +3,7 @@ defmodule EmailCheckerTest do
   doctest EmailChecker
 
   setup do
-   EmailChecker.TestEnv.setup_default_application_env
+    EmailChecker.TestEnv.setup_default_application_env()
   end
 
   test "valid?: an invalid email format returns false" do

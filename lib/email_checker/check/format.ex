@@ -23,8 +23,8 @@ defmodule EmailChecker.Check.Format do
       false
 
   """
-  @spec valid?(String.t) :: boolean
+  @spec valid?(String.t()) :: boolean
   def valid?(email) do
-    email =~ Tools.email_regex
+    email =~ Tools.email_regex()
   end
 end

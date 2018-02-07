@@ -23,11 +23,11 @@ defmodule EmailChecker.Check.MX do
       true
 
   """
-  @spec valid?(String.t) :: boolean
+  @spec valid?(String.t()) :: boolean
   def valid?(email) do
     email
-    |> Tools.domain_name
-    |> Tools.lookup
+    |> Tools.domain_name()
+    |> Tools.lookup()
     |> present?
   end
 
