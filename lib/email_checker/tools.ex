@@ -29,7 +29,7 @@ defmodule EmailChecker.Tools do
 
   defp lookup_all(domain_name) do
     domain_name
-    |> String.to_char_list()
+    |> String.to_charlist()
     |> :inet_res.lookup(:in, :mx, [], max_timeout())
     |> normalize_mx_records_to_string
   end
