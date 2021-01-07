@@ -1,3 +1,12 @@
+## v0.1.4 (2021-01-07)
+
+* Fix Compiler Warning (#15)
+
+## v0.1.3 (2019-11-11)
+
+* Fix Compiler Warning (#12)
+* Format Code
+
 ## v0.1.2 (2018-02-07)
 
 * HELO doesn't work with empty message (#10)
