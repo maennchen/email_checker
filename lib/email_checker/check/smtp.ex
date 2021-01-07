@@ -25,7 +25,6 @@ defmodule EmailChecker.Check.SMTP do
   """
   @spec valid?(String.t(), non_neg_integer) :: boolean
   def valid?(email, retries \\ max_retries())
-  def valid?(email, retries)
   def valid?(_, 0), do: false
 
   def valid?(email, retries) do
