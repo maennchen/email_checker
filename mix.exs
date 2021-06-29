@@ -24,7 +24,7 @@ defmodule EmailChecker.Mixfile do
   def application do
     [
       mod: {EmailChecker.Loader, []},
-      applications: [:logger, :socket]
+      extra_applications: [:logger]
     ]
   end
 
