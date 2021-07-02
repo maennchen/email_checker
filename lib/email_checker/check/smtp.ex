@@ -39,6 +39,9 @@ if match?({:module, Socket.TCP}, Code.ensure_compiled(Socket.TCP)) do
     rescue
       Socket.Error ->
         valid?(email, retries - 1)
+
+      _ ->
+        false
     end
 
     defp mx_address(email) do
