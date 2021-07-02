@@ -34,7 +34,7 @@ end
 def deps do
   [
     # other dependencies...
-    {:email_checker, "~> 0.1.2"}
+    {:email_checker, "~> 0.2.1"}
     # other dependencies...
   ]
 end
