@@ -84,7 +84,7 @@ defmodule EmailChecker.Mixfile do
 
   defp package do
     [
-      files: ["lib", "mix.exs", "README*", "LICENSE*"],
+      files: ["lib", "mix.exs", "README*", "LICENSE*", "priv"],
       maintainers: ["Kevin Disneur"],
       licenses: ["MIT"],
       links: %{
