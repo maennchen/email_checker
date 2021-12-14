@@ -7,8 +7,8 @@ if match?({:module, Socket.TCP}, Code.ensure_compiled(Socket.TCP)) do
     @behaviour EmailChecker.Check
 
     alias EmailChecker.Tools
-    alias Socket.TCP
     alias Socket.Stream
+    alias Socket.TCP
 
     @doc """
     Check if an emails server is aknowledging an email address.
