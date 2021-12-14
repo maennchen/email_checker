@@ -1,11 +1,13 @@
 defmodule EmailChecker.Tools do
   @moduledoc false
 
-  @email_regex ~r/^(?<user>[^\s]+)@(?<domain>[^\s]+\.[^\s]+)$/
+  regex_file = Application.app_dir(:email_checker, "priv/email_regex")
+  @external_resource regex_file
+  @email_regex regex_file |> File.read!() |> Regex.compile!()
 
   @spec domain_name(String.t()) :: String.t() | nil
   def domain_name(email) do
-    case Regex.named_captures(email_regex(), email) do
+    case Regex.named_captures(@email_regex, email) do
       %{"domain" => domain} ->
         domain
 
@@ -14,9 +16,7 @@ defmodule EmailChecker.Tools do
     end
   end
 
-  def email_regex do
-    @email_regex
-  end
+  def email_regex, do: @email_regex
 
   @spec lookup(String.t() | nil) :: String.t() | nil
   def lookup(nil), do: nil

@@ -3,15 +3,16 @@ defmodule EmailChecker.Check.FormatTest do
   doctest EmailChecker.Check.Format
 
   describe "valid?" do
-    test "a valid email format returns true" do
-      assert true == EmailChecker.Check.Format.valid?("user@domain.com")
-      assert true == EmailChecker.Check.Format.valid?("user+addition@domain.com")
-      assert true == EmailChecker.Check.Format.valid?("user.name+addition@domain.com")
+    for email <- ["user@domain.com", "user+addition@domain.com", "user.name+addition@domain.com"] do
+      test "#{email} format returns true" do
+        assert true == EmailChecker.Check.Format.valid?(unquote(email))
+      end
     end
 
-    test "an invalid email format returns false" do
-      assert false == EmailChecker.Check.Format.valid?("user.domain.com")
-      assert false == EmailChecker.Check.Format.valid?("user name@domain.com")
+    for email <- ["user.domain.com", "test@gmail.."] do
+      test "#{email} format returns false" do
+        refute EmailChecker.Check.Format.valid?(unquote(email))
+      end
     end
   end
 end
