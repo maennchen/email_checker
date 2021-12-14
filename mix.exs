@@ -14,7 +14,26 @@ defmodule EmailChecker.Mixfile do
       test_coverage: [tool: ExCoveralls],
       description: description(),
       package: package(),
-      deps: deps()
+      deps: deps(),
+      dialyzer:
+        [
+          ignore_warnings: ".dialyzer_ignore.exs",
+          list_unused_filters: true,
+          plt_add_apps: [:mix]
+        ] ++
+          if System.get_env("DIALYZER_PLT_PRIV", "false") in ["1", "true"] do
+            [plt_file: {:no_warn, "priv/plts/dialyzer.plt"}]
+          else
+            []
+          end,
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.html": :test,
+        "coveralls.json": :test,
+        "coveralls.post": :test,
+        "coveralls.xml": :test
+      ]
     ]
   end
 
@@ -43,11 +62,11 @@ defmodule EmailChecker.Mixfile do
   defp deps do
     [
       {:socket, "~> 0.3.1", optional: true},
-      {:mock, "~> 0.2.0", only: :test},
+      {:mock, "~> 0.2", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:inch_ex, ">= 0.0.0", only: :docs},
-      {:excoveralls, "~> 0.6", only: :test},
-      {:credo, "~> 0.5", only: [:dev, :test]}
+      {:credo, "~> 1.6", only: [:dev, :test]},
+      {:excoveralls, "~> 0.4", runtime: false, only: [:test]},
+      {:dialyxir, "~> 1.0", runtime: false, only: [:dev]}
     ]
   end
 

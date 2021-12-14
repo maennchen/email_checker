@@ -1,10 +1,10 @@
 # EmailChecker
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jshmrtn/crontab/master/LICENSE)
-[![Build Status](https://travis-ci.org/jshmrtn/email_checker.svg?branch=master)](https://travis-ci.org/jshmrtn/email_checker)
 [![Hex.pm Version](https://img.shields.io/hexpm/v/email_checker.svg?style=flat)](https://hex.pm/packages/email_checker)
-[![Inline docs](https://inch-ci.org/github/jshmrtn/email_checker.svg)](https://inch-ci.org/github/jshmrtn/email_checker)
+[![.github/workflows/ci.yml](https://github.com/jshmrtn/email_checker/actions/workflows/ci.yml/badge.svg)](https://github.com/jshmrtn/email_checker/actions/workflows/ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/jshmrtn/email_checker/badge.svg?branch=master)](https://coveralls.io/github/jshmrtn/email_checker?branch=master)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jshmrtn/email_checker/master/LICENSE)
+[![Last Updated](https://img.shields.io/github/last-commit/jshmrtn/email_checker.svg)](https://github.com/jshmrtn/email_checker/commits/master)
 
 Simple library checking the validity of an email. Checks are performed in the
 following order:
