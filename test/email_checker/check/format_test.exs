@@ -9,7 +9,7 @@ defmodule EmailChecker.Check.FormatTest do
       end
     end
 
-    for email <- ["user.domain.com", "test@gmail.."] do
+    for email <- ["user.domain.com", "test@gmail..", "test@gmail.com.."] do
       test "#{email} format returns false" do
         refute EmailChecker.Check.Format.valid?(unquote(email))
       end
