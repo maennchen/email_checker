@@ -3,7 +3,7 @@ defmodule EmailChecker.Tools do
 
   regex_file = Application.app_dir(:email_checker, "priv/email_regex")
   @external_resource regex_file
-  @email_regex regex_file |> File.read!() |> Regex.compile!()
+  @email_regex regex_file |> File.read!() |> Regex.compile!([:caseless])
 
   @spec domain_name(String.t()) :: String.t() | nil
   def domain_name(email) do
