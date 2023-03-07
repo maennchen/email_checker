@@ -21,20 +21,10 @@ all emails using this domain seems valid even if they are not.
 
 ```elixir
 # mix.exs
-def application do
-  [mod: {YourModule, []},
-   applications: [
-     # other applications...
-     :email_checker,
-     # other applications...
-     ]
-  ]
-end
-
 def deps do
   [
     # other dependencies...
-    {:email_checker, "~> 0.1.2"}
+    {:email_checker, "~> 0.2.4"}
     # other dependencies...
   ]
 end
