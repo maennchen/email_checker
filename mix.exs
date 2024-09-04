@@ -17,7 +17,6 @@ defmodule EmailChecker.Mixfile do
       deps: deps(),
       dialyzer:
         [
-          ignore_warnings: ".dialyzer_ignore.exs",
           list_unused_filters: true,
           plt_add_apps: [:mix]
         ] ++
@@ -64,7 +63,7 @@ defmodule EmailChecker.Mixfile do
       {:socket, "~> 0.3.1", optional: true},
       {:mock, "~> 0.2", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:credo, "~> 1.6", only: [:dev, :test]},
+      {:credo, "~> 1.6", only: :dev},
       {:excoveralls, "~> 0.4", runtime: false, only: [:test]},
       {:dialyxir, "~> 1.0", runtime: false, only: [:dev]}
     ]
