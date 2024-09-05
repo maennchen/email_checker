@@ -20,7 +20,7 @@ jobs:
       erlang: "${{ steps.versions.outputs.erlang }}"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Detect Versions
         id: versions
         uses: actions/github-script@v7
@@ -47,7 +47,7 @@ jobs:
       MIX_ENV: dev
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: erlef/setup-beam@v1
         id: setupBEAM
         with:
@@ -95,7 +95,7 @@ jobs:
             erlang: "master"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: erlef/setup-beam@v1
         id: setupBEAM
         with:         
@@ -128,7 +128,7 @@ jobs:
       MIX_ENV: dev
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: erlef/setup-elixir@v1
         id: setupBEAM
         with:
@@ -161,7 +161,7 @@ jobs:
       DIALYZER_PLT_PRIV: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: erlef/setup-elixir@v1
         id: setupBEAM
         with:
@@ -206,7 +206,7 @@ jobs:
       DIALYZER_PLT_PRIV: true
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: erlef/setup-elixir@v1
         id: setupBEAM
         with:
@@ -242,7 +242,7 @@ jobs:
       MIX_ENV: dev
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: erlef/setup-elixir@v1
         id: setupBEAM
         with:
@@ -274,7 +274,7 @@ jobs:
     name: Sobelow Job
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - id: run-action
         uses: sobelow/action@v1
         with:
