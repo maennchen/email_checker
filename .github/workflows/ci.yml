@@ -118,6 +118,8 @@ jobs:
       - run: mix deps.compile
       - run: mix compile --warning-as-errors
       - run: mix coveralls.github || mix test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   credo:
     name: Check Credo
