@@ -62,7 +62,7 @@ jobs:
       - run: mix deps.get
       - uses: actions/cache@v4
         with:
-          path: _build/test
+          path: _build/dev
           key: compile-${{ env.MIX_ENV }}-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
           restore-keys: |
             compile-${{ env.MIX_ENV }}-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-
