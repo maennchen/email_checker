@@ -23,6 +23,6 @@ jobs:
         with:
           egress-policy: audit
 
-      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v4.2.2
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v4.2.2
 
       - uses: erlef/mix-dependency-submission@e3e07c533ea58301b54024fbf9663e1a167840a3 # v1.2.2
