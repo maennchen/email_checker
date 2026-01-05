@@ -5,4 +5,17 @@ updates:
     directory: "/"
     schedule:
       interval: monthly
-    open-pull-requests-limit: 10
+    groups:
+      github-actions:
+        applies-to: version-updates
+        patterns:
+          - "*"
+  - package-ecosystem: mix
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      elixir:
+        applies-to: version-updates
+        patterns:
+          - "*"
