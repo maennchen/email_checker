@@ -20,7 +20,7 @@ jobs:
       erlang: "${{ steps.versions.outputs.erlang }}"
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - name: Detect Versions
         id: versions
         uses: actions/github-script@v8
@@ -47,20 +47,20 @@ jobs:
       MIX_ENV: dev
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - uses: erlef/setup-beam@v1
         id: setupBEAM
         with:
           version-file: ".tool-versions"
           version-type: strict
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: deps
           key: deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
           restore-keys: |
             deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-
       - run: mix deps.get
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: _build/dev
           key: compile-${{ env.MIX_ENV }}-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
@@ -95,21 +95,21 @@ jobs:
             erlang: "master"
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - uses: erlef/setup-beam@v1
         id: setupBEAM
         with:         
           otp-version: "${{ matrix.erlang }}"
           elixir-version: "${{ matrix.elixir }}"
           version-type: strict
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: deps
           key: deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
           restore-keys: |
             deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-
       - run: mix deps.get
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: _build/test
           key: compile-${{ env.MIX_ENV }}-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
@@ -130,20 +130,20 @@ jobs:
       MIX_ENV: dev
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - uses: erlef/setup-elixir@v1
         id: setupBEAM
         with:
           version-file: ".tool-versions"
           version-type: strict
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: deps
           key: deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
           restore-keys: |
             deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-
       - run: mix deps.get
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: _build/dev
           key: compile-${{ env.MIX_ENV }}-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
@@ -163,20 +163,20 @@ jobs:
       DIALYZER_PLT_PRIV: true
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - uses: erlef/setup-elixir@v1
         id: setupBEAM
         with:
           version-file: ".tool-versions"
           version-type: strict
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: deps
           key: deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
           restore-keys: |
             deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-
       - run: mix deps.get
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: _build/dev
           key: compile-${{ env.MIX_ENV }}-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
@@ -184,14 +184,14 @@ jobs:
             compile-${{ env.MIX_ENV }}-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-
       - run: mix deps.compile
       - run: mix compile --warning-as-errors
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: priv/plts/
           key: dialyzer_plt_dev-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
           restore-keys: |
             dialyzer_plt_dev-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-
       - run: mix dialyzer --plt
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: dialyzer_plt_dev
           path: priv/plts/
@@ -208,20 +208,20 @@ jobs:
       DIALYZER_PLT_PRIV: true
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - uses: erlef/setup-elixir@v1
         id: setupBEAM
         with:
           version-file: ".tool-versions"
           version-type: strict
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: deps
           key: deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
           restore-keys: |
             deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-
       - run: mix deps.get
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: _build/dev
           key: compile-${{ env.MIX_ENV }}-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
@@ -229,7 +229,7 @@ jobs:
             compile-${{ env.MIX_ENV }}-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-
       - run: mix deps.compile
       - run: mix compile --warning-as-errors
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: dialyzer_plt_dev
           path: priv/plts/
@@ -244,20 +244,20 @@ jobs:
       MIX_ENV: dev
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - uses: erlef/setup-elixir@v1
         id: setupBEAM
         with:
           version-file: ".tool-versions"
           version-type: strict
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: deps
           key: deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
           restore-keys: |
             deps-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-
       - run: mix deps.get
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: _build/dev
           key: compile-${{ env.MIX_ENV }}-${{ runner.os }}-${{ steps.setupBEAM.outputs.otp-version }}-${{ steps.setupBEAM.outputs.elixir-version }}-${{ hashFiles('mix.exs') }}
@@ -266,7 +266,7 @@ jobs:
       - run: mix deps.compile
       - run: mix compile --warning-as-errors
       - run: mix docs
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: docs
           path: doc
@@ -276,7 +276,7 @@ jobs:
     name: Sobelow Job
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.1
       - id: run-action
         uses: sobelow/action@v1
         with:
