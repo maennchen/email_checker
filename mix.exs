@@ -7,7 +7,7 @@ defmodule EmailChecker.Mixfile do
     [
       app: :email_checker,
       version: @version,
-      elixir: "~> 1.3",
+      elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
@@ -15,16 +15,10 @@ defmodule EmailChecker.Mixfile do
       description: description(),
       package: package(),
       deps: deps(),
-      dialyzer:
-        [
-          list_unused_filters: true,
-          plt_add_apps: [:mix]
-        ] ++
-          if System.get_env("DIALYZER_PLT_PRIV", "false") in ["1", "true"] do
-            [plt_file: {:no_warn, "priv/plts/dialyzer.plt"}]
-          else
-            []
-          end,
+      dialyzer: [
+        list_unused_filters: true,
+        plt_add_apps: [:mix]
+      ],
       preferred_cli_env: [
         coveralls: :test,
         "coveralls.detail": :test,
