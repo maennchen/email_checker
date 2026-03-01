@@ -48,7 +48,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: erlef/setup-beam@e6d7c94229049569db56a7ad5a540c051a010af9 # v1.20.4
+      - uses: erlef/setup-beam@3580539ceec3dc05b0ed51e9e10b08eb7a7c2bb4 # v1.21.0
         id: setupBEAM
         with:
           version-file: ".tool-versions"
@@ -99,7 +99,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: erlef/setup-beam@e6d7c94229049569db56a7ad5a540c051a010af9 # v1.20.4
+      - uses: erlef/setup-beam@3580539ceec3dc05b0ed51e9e10b08eb7a7c2bb4 # v1.21.0
         id: setupBEAM
         with:
           otp-version: "${{ matrix.erlang }}"
@@ -131,7 +131,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: erlef/setup-beam@e6d7c94229049569db56a7ad5a540c051a010af9 # v1.20.4
+      - uses: erlef/setup-beam@3580539ceec3dc05b0ed51e9e10b08eb7a7c2bb4 # v1.21.0
         id: setupBEAM
         with:
           version-file: ".tool-versions"
@@ -158,7 +158,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: erlef/setup-beam@e6d7c94229049569db56a7ad5a540c051a010af9 # v1.20.4
+      - uses: erlef/setup-beam@3580539ceec3dc05b0ed51e9e10b08eb7a7c2bb4 # v1.21.0
         id: setupBEAM
         with:
           version-file: ".tool-versions"
@@ -185,7 +185,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: erlef/setup-beam@e6d7c94229049569db56a7ad5a540c051a010af9 # v1.20.4
+      - uses: erlef/setup-beam@3580539ceec3dc05b0ed51e9e10b08eb7a7c2bb4 # v1.21.0
         id: setupBEAM
         with:
           version-file: ".tool-versions"
@@ -201,7 +201,7 @@ jobs:
       - run: mix deps.compile
       - run: mix compile --warning-as-errors
       - run: mix docs
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: docs
           path: doc
@@ -216,6 +216,6 @@ jobs:
         uses: sobelow/action@4c2cc216597acef2c5f8b4b2e49ad591be36ce36 # v1.2.0
         with:
           flags: '--skip'
-      - uses: github/codeql-action/upload-sarif@b20883b0cd1f46c72ae0ba6d1090936928f9fa30 # v4.32.0
+      - uses: github/codeql-action/upload-sarif@89a39a4e59826350b863aa6b6252a07ad50cf83e # v4.32.4
         with:
           sarif_file: results.sarif
